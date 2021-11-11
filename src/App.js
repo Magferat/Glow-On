@@ -14,6 +14,7 @@ import Purchase from './Components/Purchase/Purchase';
 import AuthProvider from './contexts/AuthProvider/AuthProvider';
 import Register from './Components/Register/Register';
 import UserOrder from './Components/DashBoard/UserOrder/UserOrder';
+import MakeAdmin from './Components/DashBoard/MakeAdmin/MakeAdmin';
 
 function App() {
   return (
@@ -32,11 +33,14 @@ function App() {
           <Route path="/addproducts">
             <AddProducts />
           </Route>
-          <Route path="/userOrders/:email">
+          {/* <Route path="/userOrders/:email">
             <UserOrder />
-          </Route>
+          </Route> */}
           <Route path="/explore">
             <ExploreProducts />
+          </Route>
+          <Route path="/explore">
+            <MakeAdmin />
           </Route>
           <Route path="/purchase/:productId">
             <Purchase />

@@ -27,7 +27,7 @@ const AddProducts = () => {
     return (
         <div className="container-fluid d-flex flex-lg-row flex-sm-column
         ">
-            <div className="container p-5 add-item">
+            <div className="col-lg-6 col-sm-11 p-5 mx-auto add-item">
                 <h3 className="text-center text-danger fw-bold mb-3">Add Products</h3>
 
                 <form

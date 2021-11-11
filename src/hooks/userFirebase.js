@@ -8,86 +8,159 @@ const googleProvider = new GoogleAuthProvider();
 
 const useFirebase = () => {
     const [user, setUser] = useState({});
+    const [name, setName] = useState('');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
     const [error, setError] = useState('');
+
     const [isLoading, setIsLoading] = useState(true);
+
     // const [admin, setAdmin] = useState(false);
+
+
 
     const auth = getAuth();
 
-    const registerUser = (email, password, name, history) => {
-        setIsLoading(true);
-        createUserWithEmailAndPassword(auth, email, password)
-            .then(result => {
-                setError('');
-                const user = result.user;
-                // setUser(user);
-                // save user to the database
-                // saveUser(email, name, 'POST');
-                // send name to firebase after creation
-                updateProfile(auth.currentUser, {
-                    displayName: name
-                }).then(() => {
-                }).catch((error) => {
-                });
-                history.replace('/');
-            })
-            .catch((error) => {
-                setError(error.message);
-                console.log(error);
-            })
-            .finally(() => setIsLoading(false));
+
+    const userName = e => {
+        setName(e.target.value);
+        // console.log(e.target.value);
     }
-    const emailPassLogin = (email, password, location, history) => {
+
+    const userEmail = e => {
+        setEmail(e.target.value);
+    }
+
+    const userPassword = e => {
+        setPassword(e.target.value)
+    }
+    const registerUser = e => {
+        e.preventDefault();
         setIsLoading(true);
+        if (password.length < 6) {
+            setError('Password Must be at least 6 characters long.')
+            return;
+        }
+        else {
+            createUserWithEmailAndPassword(auth, email, password)
+                .then(result => {
+                    // Signed in 
+                    const user = result.user;
+                    console.log(user);
+                    setUser(user);
+                    setUserName()
+                    storeUserData(email, name, 'POST');
+                })
+                .catch((error) => {
+                    const errorMessage = error.message;
+                    setError(errorMessage);
+
+                })
+                .finally(() => setIsLoading(false));
+            setError('');
+            // console.log(email, password)
+        }
+    }
+    const setUserName = () => {
+        updateProfile(auth.currentUser, { displayName: name })
+            .then(result => { })
+    }
+
+
+
+
+    const emailPassLogin = (email, password, location, history) => {
+
+        setIsLoading(true);
+
         signInWithEmailAndPassword(auth, email, password)
             .then(result => {
+
                 const destination = location?.state?.from || '/home';
                 history.replace(destination);
                 setError('');
             })
             .catch((error) => {
+
                 setError(error.message);
             })
             .finally(() => setIsLoading(false));
     }
+
+
+
     const signInWithGoogle = (location, history) => {
         setIsLoading(true);
         signInWithPopup(auth, googleProvider)
-            .then(result => {
+            .then((result) => {
                 const user = result.user;
-                // setUser(user);
 
-                // saveUser(user.email, user.displayName, 'PUT');
+                //Storeing user's data
+                storeUserData(user.email, user.displayName, 'PUT');
+
                 setError('');
+
                 const destination = location?.state?.from || '/home';
                 history.replace(destination);
+
             }).catch((error) => {
+
                 setError(error.message);
+
             }).finally(() => setIsLoading(false));
     }
+
+
     // observe user 
+
     useEffect(() => {
         const unSubscribe = onAuthStateChanged(auth, (user) => {
+
             if (user) {
                 setUser(user)
-            } else {
+            }
+
+            else {
                 setUser({})
             }
         });
+
         return () => unSubscribe();
 
     }, [auth])
+
+
     const logout = () => {
+
         setIsLoading(true);
+
         signOut(auth).then(() => {
             // Sign-out successful.
         }).catch(error => {
             // An error happened.
         })
             .finally(() => setIsLoading(false));
+
     }
+
+
+
+    const storeUserData = (email, displayName, method) => {
+        const user = { email, displayName }
+
+        fetch("http://localhost:5000/users", {
+            method: method,
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(user)
+        })
+        // .then()
+    }
+
+
     return {
-        user, logout, registerUser, emailPassLogin, signInWithGoogle, error, isLoading,
+        user, logout, registerUser, emailPassLogin, signInWithGoogle, error, isLoading, userEmail, userPassword, userName
     }
 
 }

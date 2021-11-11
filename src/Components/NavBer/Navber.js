@@ -5,6 +5,7 @@ import useAuth from '../../hooks/useAuth';
 
 const Navber = () => {
     const { user, logout } = useAuth({});
+
     return (
         <div>
             <nav className="navbar navbar-expand-lg navbar-light nav-bg">
@@ -22,7 +23,7 @@ const Navber = () => {
                                 user?.email ? <li className="nav-item">
                                     <div
                                         onClick={logout}
-                                        className="btn btn-light">Logout</div>
+                                        className="btn btn-light"> {user.displayName} Logout</div>
                                 </li> : <li className="nav-item">
                                     <HashLink className="nav-link active" aria-current="page" to="/login">Login</HashLink>
                                 </li>
