@@ -6,23 +6,17 @@ import CssBaseline from '@mui/material/CssBaseline';
 import Divider from '@mui/material/Divider';
 import Drawer from '@mui/material/Drawer';
 import IconButton from '@mui/material/IconButton';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
 import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import ListItemText from '@mui/material/ListItemText';
-import MailIcon from '@mui/icons-material/Mail';
 import MenuIcon from '@mui/icons-material/Menu';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import AddProducts from '../AddProducts/AddProducts';
-import { NavLink } from 'react-router-dom';
 import {
-    BrowserRouter as Router,
+
     Switch,
     Route,
     Link,
-    useParams,
+
     useRouteMatch
 } from "react-router-dom";
 import DashboardHome from '../DashboardHome/DashboardHome';
@@ -37,7 +31,7 @@ import useAuth from '../../../hooks/useAuth';
 const drawerWidth = 250;
 
 function DashBoard(props) {
-    const { logout } = useAuth()
+    const { logout, admin } = useAuth()
     const { window } = props;
     const [mobileOpen, setMobileOpen] = React.useState(false);
     let { path, url } = useRouteMatch();
@@ -49,16 +43,38 @@ function DashBoard(props) {
         <div>
             <Toolbar />
             <Divider />
-            <Link to="/home" > Home </Link>
-            <Link to={`${url}/addProducts`}><Button color="inherit">AddProducts</Button> </Link>
-            <Link to={`${url}`}><Button color="inherit">Dashboard</Button></Link>
-            <Link to={`${url}/makeAdmin`}><Button color="inherit">Make Admin</Button></Link>
-            <Link to={`${url}/manageProducts`}><Button color="inherit">Manage Products</Button></Link>
+            {/* <Link to="/home" > Home </Link> */}
+
+            {/* <Link to={`${url}`}><Button color="inherit">Dashboard</Button></Link> */}
 
             <List>
+                <Link to="/home" > <Button color="inherit"> Home  </Button>  </Link></List>
+            {admin && <Box>
+
+                <List>
+                    <Link to={`${url}/addProducts`}><Button color="inherit">AddProducts</Button> </Link>
+                </List>
+                {/* <List>
+                    <Link to={`${url}`}><Button color="inherit">Dashboard</Button></Link>
+
+                </List> */}
+                <List>
+                    <Link to={`${url}/makeAdmin`}><Button color="inherit">Make Admin</Button></Link>
+
+                </List>
+                <List>
+                    <Link to={`${url}/manageProducts`}><Button color="inherit">Manage Products</Button></Link>
+                </List>
+
+            </Box>}
+            {!admin && <Box> <List>
                 <Link to={`${url}/userOrders/:email`}><Button color="inherit">My Orders</Button> </Link>
+            </List> </Box>}
+
+            <List>
+                <Button onClick={logout}> Logout </Button>
             </List>
-            <Button onClick={logout}> Logout </Button>
+
 
 
         </div>
@@ -129,9 +145,9 @@ function DashBoard(props) {
             >
                 <Toolbar />
                 <Switch>
-                    <Route exact path={path}>
+                    {/* <Route exact path={path}>
                         <DashboardHome />
-                    </Route>
+                    </Route> */}
                     <Route path={`${path}/makeAdmin`}>
                         <MakeAdmin />
                     </Route>

@@ -21,8 +21,8 @@ const MakeAdmin = () => {
             .then(res => res.json())
             .then(data => {
                 if (data.modifiedCount) {
-                    console.log(data);
-
+                    // console.log(data);
+                    alert('User upgrade to Admin');
                 }
             })
 

@@ -15,7 +15,7 @@ const useFirebase = () => {
 
     const [isLoading, setIsLoading] = useState(true);
 
-    // const [admin, setAdmin] = useState(false);
+    const [admin, setAdmin] = useState(false);
 
 
 
@@ -110,6 +110,11 @@ const useFirebase = () => {
             }).finally(() => setIsLoading(false));
     }
 
+    useEffect(() => {
+        fetch(`http://localhost:5000/users/${user.email}`)
+            .then(res => res.json())
+            .then(data => setAdmin(data.admin))
+    }, [user.email])
 
     // observe user 
 
@@ -160,7 +165,7 @@ const useFirebase = () => {
 
 
     return {
-        user, logout, registerUser, emailPassLogin, signInWithGoogle, error, isLoading, userEmail, userPassword, userName
+        user, logout, registerUser, emailPassLogin, signInWithGoogle, error, isLoading, userEmail, userPassword, userName, admin,
     }
 
 }

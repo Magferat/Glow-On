@@ -15,6 +15,7 @@ import AuthProvider from './contexts/AuthProvider/AuthProvider';
 import Register from './Components/Register/Register';
 import UserOrder from './Components/DashBoard/UserOrder/UserOrder';
 import MakeAdmin from './Components/DashBoard/MakeAdmin/MakeAdmin';
+import PrivateRoute from './Components/PrivateRoute/PrivateRoute';
 
 function App() {
   return (
@@ -27,24 +28,24 @@ function App() {
           <Route path="/register">
             <Register />
           </Route>
-          <Route path="/dashboard">
+          <PrivateRoute path="/dashboard">
             <DashBoard />
-          </Route>
-          <Route path="/addproducts">
+          </PrivateRoute>
+          <PrivateRoute path="/addproducts">
             <AddProducts />
-          </Route>
+          </PrivateRoute>
           {/* <Route path="/userOrders/:email">
             <UserOrder />
           </Route> */}
           <Route path="/explore">
             <ExploreProducts />
           </Route>
-          <Route path="/explore">
+          {/* <Route path="/explore">
             <MakeAdmin />
-          </Route>
-          <Route path="/purchase/:productId">
+          </Route> */}
+          <PrivateRoute path="/purchase/:productId">
             <Purchase />
-          </Route>
+          </PrivateRoute>
           <Route path="/home">
             <Home />
           </Route>
