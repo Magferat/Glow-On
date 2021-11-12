@@ -8,7 +8,7 @@ const UserOrder = () => {
     const email = user.email;
 
     useEffect(() => {
-        fetch(`http://localhost:5000/userOrders/${email}`)
+        fetch(`https://thawing-ridge-68503.herokuapp.com/userOrders/${email}`)
             .then(res => res.json())
             .then(data => setMyOrders(data))
     }, [email])
@@ -22,7 +22,7 @@ const UserOrder = () => {
         const confirmation = window.confirm('Are you sure, you want to delete?');
 
         if (confirmation) {
-            const url = `http://localhost:5000/orders/${id}`;
+            const url = `https://thawing-ridge-68503.herokuapp.com/orders/${id}`;
 
             fetch(url, {
                 method: 'DELETE'
@@ -39,33 +39,34 @@ const UserOrder = () => {
     }
 
     return (
-        <div className="">
-            <h2 className="text-center ">Your Orders</h2>
-            <div className="row container mx-auto row-cols-lg-2 row-cols-md-1 g-4">
+        <div className="addItem-bg">
+            <h2 className="text-center text-white pt-3">Your Orders</h2>
+
+            <div className="row container mx-auto row-cols-lg-1 row-cols-md-1 g-4">
                 {
                     myOrders.map(order => <div
                         key={order._id}
-                        className="col ">
-                        <div className="card mb-3 border-warning border-3">
+                        className="col">
+                        <div className="card mb-3 col-lg-6">
                             <div className="row  g-0">
                                 <div className="col-md-4 p-2">
                                     <img src={order.product.img} className="img-fluid" alt="" />
                                 </div>
                                 <div className="col-md-8">
                                     <div className="card-body">
-                                        <h5 className="card-title fw-bold">
-                                            {order.product.name}</h5>
-                                        <p className="card-text">
-                                            <span className="fw-bold">Price :</span>Tk{order.product.price}<br />
-                                            <span className="fw-bold"> Customer Name :</span>  {order.customerName}
+                                        <p className="card-title name-text fw-light lh-1">
+                                            {order.product.name}</p>
+                                        <p className="card-text name-text ">
+                                            <span className="fw-bold   lh-1">Price :</span>Tk{order.product.price}<br />
+                                            <span className="fw-bold  "> buyer Name :</span>  {order.customerName}
                                             <br />
-                                            <span className="fw-bold"> Address :</span>  {order.address}
+                                            <span className="fw-bold "> Address :</span>  {order.address}
                                             <br />
 
                                         </p>
                                         <button
-                                            className=""
-                                            onClick={() => handleDelete(order._id)}> Cancel </button>
+                                            className="btn name-text bgcolor1 fw-bold "
+                                            onClick={() => handleDelete(order._id)}> Cancel Order </button>
 
                                     </div>
                                 </div>

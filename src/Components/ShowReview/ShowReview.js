@@ -6,7 +6,7 @@ const ShowReview = () => {
     const [reviews, setReviews] = useState([])
 
     useEffect(() => {
-        fetch("http://localhost:5000/reviews")
+        fetch("https://thawing-ridge-68503.herokuapp.com/reviews")
             .then(res => res.json())
             .then(data => {
                 // console.log(data)
@@ -15,29 +15,33 @@ const ShowReview = () => {
     }, [])
 
     return (
-        <div className="">
+        <div id="reviews" className="pro mt-5">
 
-            <h1>reviews {reviews.length}</h1>
-            <div class="row container mx-auto row-cols-1 row-cols-md-2 g-4">
+            <h1 className="color2 fw-light text-center my-4"> WHAT PEOPLE SAY ABOUT US </h1> <hr />
+            <div className="row container mx-auto row-cols-ms-1 row-cols-md-2 row-cols-lg-3 g-4">
                 {
                     reviews.map(review => <div
-                        review={review._id}
-                        class="col">
-                        <div class="card border-success mb-3" >
-                            <div class="card-header bg-transparent border-success">
-                                {review.userName}
+                        key={review._id}
+                        className="col">
+                        <div className="card mb-3 review-card" >
+                            {/* <div className="card-header bg-transparent border-success">
+                                
+                            </div> */}
+                            <div className="card-body">
+                                <img src="https://cdn-icons-png.flaticon.com/512/2/2997.png" alt="" />
+                                {/* <h6 className="card-title">{review.email}</h6> */}
+                                <p className="card-text fst-italic">{review.post}</p>
                             </div>
-                            <div class="card-body">
-                                <h6 class="card-title">{review.email}</h6>
-                                <p class="card-text">{review.post}</p>
-                            </div>
-                            <div class="card-footer bg-transparent border-success">
-
-
-                                <DynamicRatings
+                            <div className="card-footer p-0 footer-bg border-light">
+                                <div className="fs-6 fw-bold text-center">{review.userName}</div>
+                                <p className="text-center fw-bold mb-0"> ({review.rate}/5)</p>
+                                <div className="d-flex justify-content-center"><DynamicRatings
                                     value={review.rate}
                                 ></DynamicRatings>
-                                {review.rate}</div>
+
+                                </div>
+
+                            </div>
                         </div>
                     </div>)
                 }

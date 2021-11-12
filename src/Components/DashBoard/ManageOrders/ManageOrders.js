@@ -7,7 +7,7 @@ const ManageOrders = () => {
     const [isShipped, setIsShipped] = useState(false);
 
     useEffect(() => {
-        fetch('http://localhost:5000/orders')
+        fetch('https://thawing-ridge-68503.herokuapp.com/orders')
             .then(res => res.json())
             .then(data => setOrders(data))
     }, [isShipped])
@@ -16,7 +16,7 @@ const ManageOrders = () => {
         console.log(id)
         const confirmation = window.confirm('Are you sure, you want to delete an order?');
         if (confirmation) {
-            const url = `http://localhost:5000/orders/${id}`;
+            const url = `https://thawing-ridge-68503.herokuapp.com/orders/${id}`;
             // console.log(url)
             fetch(url, {
                 method: 'DELETE'
@@ -34,7 +34,7 @@ const ManageOrders = () => {
 
     const handleStatus = id => {
         console.log('clicked')
-        const url = `http://localhost:5000/orders/${id}`;
+        const url = `https://thawing-ridge-68503.herokuapp.com/orders/${id}`;
         fetch(url, {
             method: 'PUT',
             headers: {
@@ -55,10 +55,11 @@ const ManageOrders = () => {
 
 
     return (
-        <div className='table-banner container-fluid'>
-
-            <table className="table container px-2  px-5">
-                <thead className="fs-4">
+        <div className='table-banner container-fluid pro'>
+            <h1 className="text-danger text-center">Manage Orders</h1>
+            <hr />
+            <table className="table container   px-5">
+                <thead className="fs-5 font-monospace">
                     <tr>
                         <th scope="col"> * </th>
                         <th scope="col">Customer Info</th>
@@ -67,7 +68,7 @@ const ManageOrders = () => {
 
                     </tr>
                 </thead>
-                <tbody className="fw-bold font-monospace">
+                <tbody className="fw-light lh-1">
 
                     {
                         orders.map(order => <tr
@@ -79,9 +80,9 @@ const ManageOrders = () => {
                                 Price : Tk{order.product.price}</td>
                             <td> <button
                                 onClick={() => handleStatus(order._id)}
-                                className="border-0 bg-warning mb-3"
+                                className="border-0 bg-warning mb-3 py-1 px-2"
                             >{order.status} </button> <br /> <button
-                                className="border-0 bg-danger px-2"
+                                className="border-0 bg-danger px-3 py-1"
                                 onClick={() => handleDelete(order._id)}
                             >Delete</button> </td>
                         </tr>)

@@ -1,7 +1,36 @@
 /* <--------------Navber-------------> */
 .nav-bg {
-  background-color: rgb(225, 140, 68);
+  /* background-color: rgb(225, 140, 68); */
+  background-color:   #f9a392;
+
+  
 }
+.nav-bg img {
+  width: 50px;
+}
+.link {
+  color: black;
+  text-decoration: none;
+} 
+
+
+.color1 {
+  color:  #f9a392;
+  
+}
+.bgcolor1 {
+  background-color:  #f9a392;
+  
+}
+.bgcolor2 {
+  background-color:  #ef1079;
+  
+}
+.color2 {
+  color:  #ef1079;
+  
+}
+/* font-monospace
 
 /* <------------Header Style --------------> */
 .header-bg {
@@ -25,3 +54,99 @@
 .discription-text {
   font-size: xx-small;
 }
+
+
+/* <------------------------Products-----------------> */
+.pro hr{
+  width: 20%;
+  margin-inline: auto;
+  border: 2px solid red;
+  /* margin-bottom: 50px; */
+  margin-bottom: 30px; 
+ 
+}
+
+
+
+
+
+
+
+/* <---------------------- Review Cards --------------> */
+
+
+.review-card img {
+  width: 50px;
+}
+.review-card p {
+font-size: xx-small;}
+.footer-bg {
+  /* background-color: #476c5e */
+  background-color: #f9a392;
+}
+
+/* <------------------- Dynamic Ratings Stars------------------> */
+.fa-star {
+  font-size: 18px;
+  /* color : teal; */
+  color : #dc3545;
+}
+.fa-star-half-alt {
+  font-size: 18px;
+  color : #dc3545;
+  /* color : teal; */
+}
+
+/* <--------------ADD Products---------> */
+.add-item input , textarea{
+  margin-bottom: 30px;
+  padding: 8px;
+  
+}
+.addItem-bg {
+  background-image: url("https://image.freepik.com/free-psd/cosmetic-branding-mockup-scene_358694-2700.jpg");
+  /* height: 100vh; */
+  width: 100%;
+  background-blend-mode: overlay;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+ 
+  position: relative;
+  background-color: rgb(63, 61, 61);
+} 
+
+/* <-----------Manage Products------------> */
+.manage-bg {
+  background-image: url("https://image.freepik.com/free-photo/skin-oil-droppers-face-cream-recipients-assortment_23-2148761438.jpg");
+  background-size: contain;
+  background-blend-mode: overlay;
+  background-repeat: no-repeat;
+  background-color: rgb(63, 61, 61);
+}
+
+/* <-----------Review------------> */
+
+.review-bg {
+  background-image: url("https://image.freepik.com/free-photo/young-writer-taking-notes_23-2148854508.jpg");
+  height: 100vh;
+  width: 100%;
+  background-blend-mode: overlay;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+ 
+  position: relative;
+  background-color: rgb(63, 61, 61);
+}
+/* <-----------Footer------------> */
+
+.bg-footer {
+  background-color: #f02031;
+}
+.footer-text {
+  font-size: xx-small;
+}
+
+
+

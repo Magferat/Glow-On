@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import initializeAuthentication from "../Firebase/firebase.init";
 import { GoogleAuthProvider, getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile, signOut, onAuthStateChanged, signInWithPopup } from "firebase/auth";
+import { isAdmin } from "@firebase/util";
 
 
 initializeAuthentication()
@@ -32,10 +33,11 @@ const useFirebase = () => {
     }
 
     const userPassword = e => {
-        setPassword(e.target.value)
+        setPassword(e.target.value);
+
     }
-    const registerUser = e => {
-        e.preventDefault();
+    const registerUser = (location, history) => {
+
         setIsLoading(true);
         if (password.length < 6) {
             setError('Password Must be at least 6 characters long.')
@@ -50,6 +52,8 @@ const useFirebase = () => {
                     setUser(user);
                     setUserName()
                     storeUserData(email, name, 'POST');
+                    const destination = location?.state?.from || '/home';
+                    history.replace(destination);
                 })
                 .catch((error) => {
                     const errorMessage = error.message;
@@ -76,8 +80,16 @@ const useFirebase = () => {
         signInWithEmailAndPassword(auth, email, password)
             .then(result => {
 
-                const destination = location?.state?.from || '/home';
-                history.replace(destination);
+
+                if (!isAdmin) {
+                    const destination = location?.state?.from || '/home';
+                    history.replace(destination);
+
+                }
+                else if (isAdmin) {
+                    const destination = '/dashboard';
+                    history.push(destination);
+                }
                 setError('');
             })
             .catch((error) => {
@@ -125,7 +137,7 @@ const useFirebase = () => {
 
 
     useEffect(() => {
-        fetch(`http://localhost:5000/users/${user.email}`)
+        fetch(`https://thawing-ridge-68503.herokuapp.com/users/${user.email}`)
             .then(res => res.json())
             .then(data => setAdmin(data.admin))
     }, [user.email])
@@ -152,7 +164,7 @@ const useFirebase = () => {
     const storeUserData = (email, displayName, method) => {
         const user = { email, displayName }
 
-        fetch("http://localhost:5000/users", {
+        fetch("https://thawing-ridge-68503.herokuapp.com/users", {
             method: method,
             headers: {
                 'content-type': 'application/json'

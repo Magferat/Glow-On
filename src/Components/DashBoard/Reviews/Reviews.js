@@ -21,7 +21,7 @@ const Reviews = () => {
         // const reviews = { ...reviews }
 
         // send to the server
-        fetch('http://localhost:5000/reviews', {
+        fetch('https://thawing-ridge-68503.herokuapp.com/reviews', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -40,46 +40,54 @@ const Reviews = () => {
 
     return (
         <>
-            <form
-                onSubmit={submitReview}
-            >
-                <div class="mb-3">
-                    <label for="exampleFormControlInput1" class="form-label">
-                        User Name</label>
-                    <input
-                        onBlur={handleOnBlur}
-                        name="userName"
-                        required
-                        type="text" class="form-control" id="exampleFormControlInput1" placeholder="User Name" />
-                </div>
-                <div class="mb-3">
-                    <label for="exampleFormControlInput1" class="form-label">Email address</label>
-                    <input
-                        onBlur={handleOnBlur}
-                        required
-                        name="email"
-                        type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com" />
-                </div>
-                <div class="mb-3">
-                    <label for="exampleFormControlInput1" class="form-label">
-                        Rating</label>
-                    <input
-                        onBlur={handleOnBlur}
-                        name="rate"
-                        type="number"
-                        min="0" max="5" step="any"
-                        class="form-control" id="exampleFormControlInput1" placeholder="Rating(0-5)" />
-                </div>
-                <div class="mb-3">
-                    <label for="exampleFormControlTextarea1" class="form-label">
-                        Review</label>
-                    <textarea
-                        name="post"
-                        onBlur={handleOnBlur}
-                        class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-                    <button type="submit">Submit</button>
-                </div>
-            </form>
+            <div className="div review-bg">
+                <div className="col-6 px-5 mx-auto ">
+                    <h2 className="text-center text-white">Write A Review</h2>
+                    <form
+                        className="p-2"
+                        onSubmit={submitReview}
+                    >
+                        <div className="mb-3">
+                            <label for="exampleFormControlInput1" className="form-label text-white">
+                                User Name</label>
+                            <input
+                                onBlur={handleOnBlur}
+                                name="userName"
+                                required
+                                type="text" className="form-control border-dark" id="exampleFormControlInput1" placeholder="User Name" />
+                        </div>
+                        <div className="mb-3">
+                            <label for="exampleFormControlInput1" className="form-label text-white">Email address</label>
+                            <input
+                                onBlur={handleOnBlur}
+                                required
+                                name="email"
+                                type="email" className="form-control" id="exampleFormControlInput1" placeholder="name@example.com" />
+                        </div>
+                        <div className="mb-3">
+                            <label for="exampleFormControlInput1" className="form-label text-white">
+                                Rating</label>
+                            <input
+                                onBlur={handleOnBlur}
+                                name="rate"
+                                type="number"
+                                min="0" max="5" step="any"
+                                className="form-control" id="exampleFormControlInput1" placeholder="Rating(0-5)" />
+                        </div>
+                        <div className="mb-3">
+                            <label for="exampleFormControlTextarea1" className="form-label text-white">
+                                Review</label>
+                            <textarea
+                                name="post"
+                                onBlur={handleOnBlur}
+                                className="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                            <button
+                                className="btn bgcolor1 fw-bold"
+                                type="submit">Submit</button>
+                        </div>
+                    </form></div>
+
+            </div>
         </>
     );
 };

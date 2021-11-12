@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { NavLink, useHistory, useLocation } from 'react-router-dom';
 import useAuth from '../../hooks/useAuth';
-import Navber from '../NavBer/Navber';
+// import Navber from '../NavBer/Navber';
 
 const Login = () => {
-    const { emailPassLogin, signInWithGoogle, error, isLoading } = useAuth();
+    const { emailPassLogin, signInWithGoogle, error } = useAuth();
     const [userInfo, setUserInfo] = useState({});
     const location = useLocation();
     const history = useHistory();
@@ -28,36 +28,46 @@ const Login = () => {
 
     return (
         <div>
-            <Navber />
-            <div className="col-6">
-                <form onSubmit={emailPassLoginOnSubmit}>
-                    <div class="mb-3">
-                        <label for="exampleInputEmail1" class="form-label">Email address</label>
-                        <input
-                            onBlur={handleOnblur}
+            {/* <Navber /> */}
+            <h2 className="text-center mt-2">User Login</h2>
+            <div className="container d-lg-flex">
 
-                            type="email" name="email"
-                            class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
-                        {/* <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div> */}
-                    </div>
-                    <div class="mb-3">
-                        <label for="exampleInputPassword1" class="form-label">Password</label>
-                        <input
-                            onBlur={handleOnblur}
-                            type="password" name="password"
-                            class="form-control" id="exampleInputPassword1" />
-                    </div>
+                <div className="col-6 mx-2 px-3 mt-5">
+                    <form onSubmit={emailPassLoginOnSubmit}>
+                        <div className="mb-3">
+                            <label for="exampleInputEmail1" className="form-label">Email address</label>
+                            <input
+                                onBlur={handleOnblur}
 
-                    <button type="submit" class="btn btn-primary">Submit</button>
-                </form>
-                <div
-                    onClick={handleGooglelogIn}
-                    className="btn btn-light">Google</div>
-                <NavLink to="/register">Not an user ? Click here to Register </NavLink>
+                                type="email" name="email"
+                                className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
+
+                        </div>
+                        <div className="mb-3">
+                            <label for="exampleInputPassword1" className="form-label">Password</label>
+                            <input
+                                onBlur={handleOnblur}
+                                type="password" name="password"
+                                className="form-control" id="exampleInputPassword1" />
+                            <div id="emailHelp" className="form-text">Never share your Password with anyone else.</div>
+                        </div>
+
+                        <button type="submit" className="btn btn-primary">Login <i class="fas fa-sign-in-alt"></i></button>
+                        <p>{error}</p>
+                    </form>
+                    <NavLink
+                        className="link"
+                        to="/register">Not an user ? <span className="text-primary"> Register</span> </NavLink><br /><button
+                            onClick={handleGooglelogIn}
+                            className="btn btn-danger text-white mt-1">Continue With Google <i class="fab fa-google-plus-g"></i></button>
+                </div>
+                <div className="col-6">
+                    <img
+                        className="img-fluid"
+                        src="https://image.freepik.com/free-vector/mobile-login-concept-illustration_114360-83.jpg" alt="" />
+                </div>
             </div>
-            <div className="col-6">
-                img
-            </div>
+
 
         </div>
     );

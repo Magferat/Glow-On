@@ -7,7 +7,7 @@ const AddProducts = () => {
     const onSubmit = data => {
         // e.preventDefault();
 
-        fetch("http://localhost:5000/products", {
+        fetch("https://thawing-ridge-68503.herokuapp.com/products", {
             method: "POST",
             headers: { "content-type": "application/json" },
             body: JSON.stringify(data),
@@ -25,32 +25,26 @@ const AddProducts = () => {
     }
 
     return (
-        <div className="container-fluid d-flex flex-lg-row flex-sm-column
-        ">
-            <div className="col-lg-6 col-sm-11 p-5 mx-auto add-item">
-                <h3 className="text-center text-danger fw-bold mb-3">Add Products</h3>
+        <div className="addItem-bg">
+            <h1 className="fw-light text-center text-white fs-1">Add Products</h1>
+            <div className="row row container mx-auto row-cols-lg-1 row-cols-md-1 g-4">
+                <div className="col-lg-6  mx-lg-auto add-item">
+                    {/* <h1 className="fw-light text-center text-white fs-1">Add Products</h1> */}
 
-                <form
-                    className="d-flex flex-column"
-                    onSubmit={handleSubmit(onSubmit)}>
-                    <input {...register("img")} placeholder="Image Url" />
-                    <input {...register("name", { required: true, })} placeholder="Products's Name" />
-
-
-                    <input type="number" step="any" {...register("price")} placeholder="Products's Price" />
-                    <input type="number" step="any" {...register("ratings", { min: 0, max: 5 })} placeholder="ratings in 5" />
-                    <textarea {...register("discription")} placeholder="Products's Description" />
-                    <textarea {...register("directions")} placeholder="Directions" />
-                    <input className="text-white bg-warning border-5 shadow-lg fw-bold fs-5 border-danger" type="submit" />
-                </form>
-            </div>
-            {/* <div className="container">
-                <img
-                    className="img-fluid"
-                    src="https://image.freepik.com/free-vector/delivery-man-handling-parcel-package-box-customer_218660-352.jpg" alt="" />
-            </div> */}
+                    <form
+                        className="d-flex flex-column"
+                        onSubmit={handleSubmit(onSubmit)}>
+                        <input {...register("img")} placeholder="Image Url" />
+                        <input {...register("name", { required: true, })} placeholder="Products's Name" />
 
 
+                        <input type="number" step="any" {...register("price")} placeholder="Products's Price" />
+                        <input type="number" step="any" {...register("ratings", { min: 0, max: 5 })} placeholder="ratings in 5" />
+                        <textarea {...register("discription")} placeholder="Products's Description" />
+                        <textarea {...register("directions")} placeholder="Directions" />
+                        <input className="w-50 mx-auto bg-danger btn text-white fw-bold fs-5 border-danger" type="submit" />
+                    </form>
+                </div></div>
         </div>
     );
 };

@@ -27,6 +27,7 @@ import ManageProducts from '../ManageProducts/ManageProducts';
 import useAuth from '../../../hooks/useAuth';
 import ManageOrders from '../ManageOrders/ManageOrders';
 import Reviews from '../Reviews/Reviews';
+import Pay from '../Pay/Pay';
 // import UserOrder from '../UserOrder/UserOrder';
 
 
@@ -42,50 +43,51 @@ function DashBoard(props) {
     };
 
     const drawer = (
-        <div>
+        <div className="drawer-style">
             <Toolbar />
             <Divider />
-            {/* <Link to="/home" > Home </Link> */}
+            {/* <Link className={ link } to="/home" > Home </Link> */}
 
-            {/* <Link to={`${url}`}><Button color="inherit">Dashboard</Button></Link> */}
+            <Link
+                className=" link" to={`${url}`}><Button color="inherit">Dashboard</Button></Link>
 
-            <List>
-                <Link to="/home" > <Button color="inherit"> Home  </Button>  </Link></List>
+
             {admin && <Box>
 
                 <List>
-                    <Link to={`${url}/addProducts`}><Button color="inherit">AddProducts</Button> </Link>
+                    <Link className=" link " to={`${url}/addProducts`}><Button color="inherit">AddProducts</Button> </Link>
                 </List>
                 {/* <List>
-                    <Link to={`${url}`}><Button color="inherit">Dashboard</Button></Link>
+                    <Link className={ link } to={`${url}`}><Button color="inherit">Dashboard</Button></Link>
 
                 </List> */}
                 <List>
-                    <Link to={`${url}/makeAdmin`}><Button color="inherit">Make Admin</Button></Link>
+                    <Link className=" link " to={`${url}/makeAdmin`}><Button color="inherit">Make Admin</Button></Link>
 
                 </List>
                 <List>
-                    <Link to={`${url}/manageProducts`}><Button color="inherit">Manage Products</Button></Link>
+                    <Link className=" link " to={`${url}/manageProducts`}><Button color="inherit">Manage Products</Button></Link>
                 </List>
                 <List>
-                    <Link to={`${url}/manageOrders`}><Button color="inherit">Manage Orders</Button></Link>
+                    <Link className=" link " to={`${url}/manageOrders`}><Button color="inherit">Manage Orders</Button></Link>
                 </List>
 
             </Box>}
             {!admin && <Box>
                 <List>
-                    <Link to={`${url}/userOrders/:email`}><Button color="inherit">My Orders</Button> </Link>
+                    <Link className=" link " to={`${url}/userOrders/:email`} ><Button color="inherit">My Orders</Button> </Link>
                 </List>
                 <List>
-                    <Link to={`${url}/reviews`}><Button color="inherit">Review</Button> </Link>
+                    <Link className=" link " to={`${url}/reviews`}><Button color="inherit">Review</Button> </Link>
                 </List>
-                {/* <List>
-                <Link to={`${url}/userOrders/:email`}><Button color="inherit">My Orders</Button> </Link>
-            </List>  */}
+                <List>
+                    <Link className=" link " to={`${url}/pay`}><Button color="inherit">Payment</Button> </Link>
+                </List>
 
 
             </Box>}
-
+            <List>
+                <Link className=" link " to="/home" > <Button color="inherit"> Home  </Button>  </Link></List>
             <List>
                 <Button onClick={logout}> Logout </Button>
             </List>
@@ -103,8 +105,10 @@ function DashBoard(props) {
             <AppBar
                 position="fixed"
                 sx={{
+                    backgroundColor: '#f9a392',
                     width: { sm: `calc(100% - ${drawerWidth}px)` },
                     ml: { sm: `${drawerWidth}px` },
+
                 }}
             >
                 <Toolbar>
@@ -117,7 +121,9 @@ function DashBoard(props) {
                     >
                         <MenuIcon />
                     </IconButton>
-                    <Typography variant="h5" noWrap component="div">
+                    <Typography
+
+                        variant="h5" noWrap component="div">
                         Dashboard
                     </Typography>
                 </Toolbar>
@@ -137,6 +143,7 @@ function DashBoard(props) {
                         keepMounted: true, // Better open performance on mobile.
                     }}
                     sx={{
+
                         display: { xs: 'block', sm: 'none' },
                         '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
                     }}
@@ -146,6 +153,7 @@ function DashBoard(props) {
                 <Drawer
                     variant="permanent"
                     sx={{
+
                         display: { xs: 'none', sm: 'block' },
                         '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
                     }}
@@ -160,9 +168,9 @@ function DashBoard(props) {
             >
                 <Toolbar />
                 <Switch>
-                    {/* <Route exact path={path}>
+                    <Route exact path={path}>
                         <DashboardHome />
-                    </Route> */}
+                    </Route>
                     <Route path={`${path}/makeAdmin`}>
                         <MakeAdmin />
                     </Route>
@@ -180,6 +188,9 @@ function DashBoard(props) {
                     </Route>
                     <Route path={`${path}/reviews`}>
                         <Reviews />
+                    </Route>
+                    <Route path={`${path}/pay`}>
+                        <Pay />
                     </Route>
                 </Switch>
 

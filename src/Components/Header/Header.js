@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Header = () => {
     //
@@ -11,7 +12,9 @@ const Header = () => {
                     Secret Of Your Beauty</h1>
                 <h2 className="font-monospace">
                     Daily Essential</h2>
-                <button type="button" class="btn btn-light">Shop Now</button>
+                <button type="button" className="btn btn-light">
+                    <Link className="link" to="/explore">Shop Now</Link>
+                </button>
 
 
             </div>

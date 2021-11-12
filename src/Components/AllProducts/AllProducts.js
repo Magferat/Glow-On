@@ -5,7 +5,7 @@ const AllProducts = () => {
     const [products, setProducts] = useState([])
 
     useEffect(() => {
-        fetch("http://localhost:5000/products")
+        fetch("https://thawing-ridge-68503.herokuapp.com/products")
             .then(res => res.json())
             .then(data => {
                 // console.log(data)
@@ -17,9 +17,10 @@ const AllProducts = () => {
     // console.log(sixProducts)
 
     return (
-        <div className="">
-            <h1>Products {sixProducts.length}</h1>
-            <div className="container mx-auto">
+        <div className="mt-5 pro">
+            <h1 className="text-center color2 mt-5 fw-light">Featured Face Creams </h1>
+            <hr />
+            <div className="container mt-5 mx-auto">
                 <div className=" row  row-cols-sm-1 row-cols-md-1 row-cols-lg-3 g-4">
                     {
                         sixProducts.map(product => <ShowProducts
@@ -27,6 +28,7 @@ const AllProducts = () => {
                             product={product}
                         ></ShowProducts>)
                     }
+
                 </div></div>
         </div>
     );

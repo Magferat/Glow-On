@@ -13,9 +13,8 @@ import ExploreProducts from './Components/ExploreProducts/ExploreProducts';
 import Purchase from './Components/Purchase/Purchase';
 import AuthProvider from './contexts/AuthProvider/AuthProvider';
 import Register from './Components/Register/Register';
-import UserOrder from './Components/DashBoard/UserOrder/UserOrder';
-import MakeAdmin from './Components/DashBoard/MakeAdmin/MakeAdmin';
 import PrivateRoute from './Components/PrivateRoute/PrivateRoute';
+import NotFond from './Components/NotFound/NotFond';
 
 function App() {
   return (
@@ -34,25 +33,22 @@ function App() {
           <Route path="/addproducts">
             <AddProducts />
           </Route>
-          {/* <Route path="/userOrders/:email">
-            <UserOrder />
-          </Route> */}
+
           <Route path="/explore">
             <ExploreProducts />
           </Route>
-          {/* <Route path="/explore">
-            <MakeAdmin />
-          </Route> */}
+
           <PrivateRoute path="/purchase/:productId">
             <Purchase />
           </PrivateRoute>
           <Route path="/home">
             <Home />
           </Route>
-          <Route path="/">
+
+          <Route exact path="/">
             <Home />
           </Route>
-
+          <Route path="*"> <NotFond /></Route>
         </Switch>
       </Router> </AuthProvider>
 

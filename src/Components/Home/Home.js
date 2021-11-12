@@ -1,8 +1,9 @@
 import React from 'react';
+import AboutUs from '../About Us/AboutUs';
 import AllProducts from '../AllProducts/AllProducts';
+import Footer from '../Footer/Footer';
 import Header from '../Header/Header';
 import Navber from '../NavBer/Navber';
-import ShowProducts from '../ShowProducts/ShowProducts';
 import ShowReview from '../ShowReview/ShowReview';
 
 const Home = () => {
@@ -10,9 +11,11 @@ const Home = () => {
         <div>
             <Navber />
             <Header />
-            <h1>Hi from home</h1>
+
             <AllProducts />
+            <AboutUs />
             <ShowReview />
+            <Footer />
         </div>
     );
 };

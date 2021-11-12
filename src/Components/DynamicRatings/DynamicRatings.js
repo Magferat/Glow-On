@@ -6,7 +6,7 @@ const DynamicRatings = ({ value }) => {
             {
                 [...Array(5)].map((ignore, ind) => {
                     return (
-                        <span key={ind}>
+                        <span className="rate" key={ind}>
                             <i
                                 className={
                                     value >= ind + 1

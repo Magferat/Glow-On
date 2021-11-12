@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 import useAuth from '../../hooks/useAuth';
+import DynamicRatings from '../DynamicRatings/DynamicRatings';
+import Footer from '../Footer/Footer';
 import Navber from '../NavBer/Navber';
 
 const Purchase = () => {
@@ -28,7 +30,7 @@ const Purchase = () => {
             status: "Pending"
         }
         // send to the server
-        fetch('http://localhost:5000/orders', {
+        fetch('https://thawing-ridge-68503.herokuapp.com/orders', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -45,7 +47,7 @@ const Purchase = () => {
 
     }
     useEffect(() => {
-        fetch(`http://localhost:5000/products/${productId}`)
+        fetch(`https://thawing-ridge-68503.herokuapp.com/products/${productId}`)
             .then(res => res.json())
             .then(data => setProduct(data))
     }, [productId])
@@ -54,29 +56,11 @@ const Purchase = () => {
         <>
             <Navber />
             <div className="d-lg-flex col-sm-10">
-                <div className=" col-sm-12 col-lg-6 mx-4">
-                    <div class="card">
-                        <img src={product.img} class="card-img-top w-75 mx-auto" alt="..." />
-                        <div class="card-body">
-                            <h5 class="card-title">{product.name}</h5>
-                            {/* <p class="card-text">{product.discription}</p> */}
-                        </div>
-                        <ul class="list-group list-group-flush">
-                            <li class="list-group-item">Tk {product.price} </li>
-                            <li class="list-group-item">{product.discription}</li>
-                            <li class="list-group-item">{product.directions}</li>
-
-                        </ul>
-                        {/* <div class="card-body">
-                        <a href="#" class="card-link">Card link</a>
-                        <a href="#" class="card-link">Another link</a>
-                    </div> */}
-                    </div>
-                </div>
-                <div className="col-sm-12 col-lg-6">
-                    <div className=" mt-lg-5 pt-5 px-3">
+                <div className="col-sm-12 col-lg-6 ">
+                    <div className=" mt-lg-5 pt-5 mx-3 add-item">
+                        <h5 className="text-center color2 mb-3">To Purchase Fill This Form</h5>
                         <form
-                            className=" d-flex flex-column "
+                            className="px-2 d-flex flex-column "
                             onSubmit={handleOrderSubmit}>
 
                             <input
@@ -113,11 +97,37 @@ const Purchase = () => {
                                 placeholder="Shipping Address"
                             />
 
-                            <button type="submit" variant="contained">Submit</button>
+                            <input className="w-50 mx-auto bgcolor1 btn fw-bold fs-5" type="submit" />
                         </form> </div>
 
                 </div>
-            </div></>
+                <div className=" col-sm-12 col-lg-6 mx-4 mt-3 mb-5">
+                    <div className="card ">
+                        <img src={product.img} className="card-img-top w-50 mx-auto" alt="..." />
+                        <div className="card-body">
+                            <h5 className="card-title lh-1">{product.name}</h5>
+
+                        </div>
+                        <ul className="list-group list-group-flush">
+                            <li className="list-group-item"> <span className="fw-bold color1">  Price :</span> Tk {product.price} </li>
+                            <li className="list-group-item d-flex justify-content-center">
+
+                                <DynamicRatings
+                                    value={product.ratings}
+                                ></DynamicRatings>
+                                ({product.ratings}/5)
+                            </li>
+                            <li className="list-group-item name-text"><span className="fw-bold fs-5 color1">  Discription </span> <br />{product.discription}</li>
+                            <li className="list-group-item name-text"><span className="fw-bold fs-5 color1"> How to use</span> <br />{product.directions}</li>
+
+                        </ul>
+
+                    </div>
+                </div>
+
+            </div>
+            <Footer />
+        </>
     );
 };
 
