@@ -25,6 +25,8 @@ import { Button } from '@mui/material';
 import UserOrder from '../UserOrder/UserOrder';
 import ManageProducts from '../ManageProducts/ManageProducts';
 import useAuth from '../../../hooks/useAuth';
+import ManageOrders from '../ManageOrders/ManageOrders';
+import Reviews from '../Reviews/Reviews';
 // import UserOrder from '../UserOrder/UserOrder';
 
 
@@ -65,11 +67,24 @@ function DashBoard(props) {
                 <List>
                     <Link to={`${url}/manageProducts`}><Button color="inherit">Manage Products</Button></Link>
                 </List>
+                <List>
+                    <Link to={`${url}/manageOrders`}><Button color="inherit">Manage Orders</Button></Link>
+                </List>
 
             </Box>}
-            {!admin && <Box> <List>
+            {!admin && <Box>
+                <List>
+                    <Link to={`${url}/userOrders/:email`}><Button color="inherit">My Orders</Button> </Link>
+                </List>
+                <List>
+                    <Link to={`${url}/reviews`}><Button color="inherit">Review</Button> </Link>
+                </List>
+                {/* <List>
                 <Link to={`${url}/userOrders/:email`}><Button color="inherit">My Orders</Button> </Link>
-            </List> </Box>}
+            </List>  */}
+
+
+            </Box>}
 
             <List>
                 <Button onClick={logout}> Logout </Button>
@@ -157,19 +172,18 @@ function DashBoard(props) {
                     <Route path={`${path}/manageProducts`}>
                         <ManageProducts />
                     </Route>
+                    <Route path={`${path}/manageOrders`}>
+                        <ManageOrders />
+                    </Route>
                     <Route path={`${path}/userOrders/:email`}>
                         <UserOrder />
                     </Route>
+                    <Route path={`${path}/reviews`}>
+                        <Reviews />
+                    </Route>
                 </Switch>
-                <Typography paragraph>
 
 
-                </Typography>
-                {/* <Header /> DashBoard
-            <h1>Hi from dashboard</h1>
-            <Link to='/addproducts'>AddProducts </Link>
-            <Link to='/userOrders/:email'>My Orders </Link>
-            <Link to='/home'>Home </Link> */}
 
             </Box>
         </Box>

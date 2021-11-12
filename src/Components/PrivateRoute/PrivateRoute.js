@@ -1,3 +1,4 @@
+import { CircularProgress } from '@mui/material';
 import React from 'react';
 import { Redirect, Route } from 'react-router';
 import useAuth from '../../hooks/useAuth';
@@ -5,8 +6,7 @@ import useAuth from '../../hooks/useAuth';
 const PrivateRoute = ({ children, ...rest }) => {
     const { user, isLoading } = useAuth();
     if (isLoading) {
-
-        return <div className="mx-auto">
+        return <div>
 
             <div className="spinner-grow text-danger" role="status">
                 <span className="visually-hidden">Loading...</span>
@@ -27,7 +27,7 @@ const PrivateRoute = ({ children, ...rest }) => {
                 user.email ? children :
                     <Redirect
                         to={{
-                            pathname: "/logIn",
+                            pathname: "/login",
                             state: { from: location }
                         }}
                     ></Redirect>
@@ -37,6 +37,7 @@ const PrivateRoute = ({ children, ...rest }) => {
 
         </Route>
     );
+
 };
 
 export default PrivateRoute;

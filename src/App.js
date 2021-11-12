@@ -31,9 +31,9 @@ function App() {
           <PrivateRoute path="/dashboard">
             <DashBoard />
           </PrivateRoute>
-          <PrivateRoute path="/addproducts">
+          <Route path="/addproducts">
             <AddProducts />
-          </PrivateRoute>
+          </Route>
           {/* <Route path="/userOrders/:email">
             <UserOrder />
           </Route> */}

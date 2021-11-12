@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-// import StarRatings from './react-star-ratings';
-// import ReactStars from "react-rating-stars-component";
+
 
 
 

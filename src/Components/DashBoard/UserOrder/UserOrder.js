@@ -40,7 +40,7 @@ const UserOrder = () => {
 
     return (
         <div className="">
-            <h1 className="text-center ">My Orders  </h1>
+            <h2 className="text-center ">Your Orders</h2>
             <div className="row container mx-auto row-cols-lg-2 row-cols-md-1 g-4">
                 {
                     myOrders.map(order => <div
@@ -64,8 +64,8 @@ const UserOrder = () => {
 
                                         </p>
                                         <button
-                                            className="bg-warning text-white px-3 py-1 rounded-pill border-0 "
-                                            onClick={() => handleDelete(order._id)}> Delete Order </button>
+                                            className=""
+                                            onClick={() => handleDelete(order._id)}> Cancel </button>
 
                                     </div>
                                 </div>

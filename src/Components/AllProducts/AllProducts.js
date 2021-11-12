@@ -22,9 +22,9 @@ const AllProducts = () => {
             <div className="container mx-auto">
                 <div className=" row  row-cols-sm-1 row-cols-md-1 row-cols-lg-3 g-4">
                     {
-                        sixProducts.map(pd => <ShowProducts
-                            key={pd._id}
-                            product={pd}
+                        sixProducts.map(product => <ShowProducts
+                            key={product._id}
+                            product={product}
                         ></ShowProducts>)
                     }
                 </div></div>

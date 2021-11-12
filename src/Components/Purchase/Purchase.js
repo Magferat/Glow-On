@@ -17,13 +17,15 @@ const Purchase = () => {
         const newInfo = { ...orderInfo };
         newInfo[field] = value;
         setOrderInfo(newInfo);
+
     }
     const handleOrderSubmit = e => {
         e.preventDefault();
 
         const order = {
             ...orderInfo,
-            product: product
+            product: product,
+            status: "Pending"
         }
         // send to the server
         fetch('http://localhost:5000/orders', {
@@ -72,42 +74,47 @@ const Purchase = () => {
                     </div>
                 </div>
                 <div className="col-sm-12 col-lg-6">
-                    <div className=" mt-lg-5 pt-5 px-3"><form
-                        className=" d-flex flex-column "
-                        onSubmit={handleOrderSubmit}>
+                    <div className=" mt-lg-5 pt-5 px-3">
+                        <form
+                            className=" d-flex flex-column "
+                            onSubmit={handleOrderSubmit}>
 
-                        <input
+                            <input
+                                required
+                                name="productName"
+                                onBlur={handleOnBlur}
+                                value={product.name}
+                            />
+                            <input
+                                placeholder="Customer Name"
 
-                            name="productName"
-                            onBlur={handleOnBlur}
-                            value={product.name}
-                        />
-                        <input
-                            placeholder="Customer Name"
+                                name="customerName"
+                                onBlur={handleOnBlur}
+                                defaultValue={user.displayName}
+                                required
+                            />
+                            <input
+                                placeholder="Customer Email"
+                                name="email"
+                                onBlur={handleOnBlur}
+                                defaultValue={user.email}
+                                required
+                            />
+                            <input
+                                required
+                                name="phone"
+                                onBlur={handleOnBlur}
+                                placeholder="Phone Number"
+                            />
+                            <textarea
+                                required
+                                name="address"
+                                onBlur={handleOnBlur}
+                                placeholder="Shipping Address"
+                            />
 
-                            name="customerName"
-                            onBlur={handleOnBlur}
-                            defaultValue={user.displayName}
-                        />
-                        <input
-                            placeholder="Customer Email"
-                            name="email"
-                            onBlur={handleOnBlur}
-                            defaultValue={user.email}
-                        />
-                        <input
-                            name="phone"
-                            onBlur={handleOnBlur}
-                            placeholder="Phone Number"
-                        />
-                        <textarea
-                            name="address"
-                            onBlur={handleOnBlur}
-                            placeholder="Shipping Address"
-                        />
-
-                        <button type="submit" variant="contained">Submit</button>
-                    </form> </div>
+                            <button type="submit" variant="contained">Submit</button>
+                        </form> </div>
 
                 </div>
             </div></>
