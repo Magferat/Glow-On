@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import DynamicRatings from '../DynamicRatings/DynamicRatings';
 
 const ShowReview = () => {
 
@@ -30,7 +31,13 @@ const ShowReview = () => {
                                 <h6 class="card-title">{review.email}</h6>
                                 <p class="card-text">{review.post}</p>
                             </div>
-                            <div class="card-footer bg-transparent border-success">{review.rate}</div>
+                            <div class="card-footer bg-transparent border-success">
+
+
+                                <DynamicRatings
+                                    value={review.rate}
+                                ></DynamicRatings>
+                                {review.rate}</div>
                         </div>
                     </div>)
                 }

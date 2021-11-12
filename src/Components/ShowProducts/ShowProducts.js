@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import DynamicRatings from '../DynamicRatings/DynamicRatings';
 
 
 
@@ -21,7 +22,9 @@ const ShowProducts = (props) => {
                         starDimension="40px"
                         starSpacing="15px"
                     /> */}
-                    <small class="name-text">{ratings} </small>
+                    <small class="name-text">
+                        <DynamicRatings value={ratings} ></DynamicRatings>
+                        {ratings} </small>
                     <br />
                     <small class="name-text fw-bold">Tk {price}</small>
                     <br />  <button className="btn-light">

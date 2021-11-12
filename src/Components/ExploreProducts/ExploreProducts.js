@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import DynamicRatings from '../DynamicRatings/DynamicRatings';
 import Navber from '../NavBer/Navber';
 
 const ExploreProducts = () => {
@@ -30,7 +31,10 @@ const ExploreProducts = () => {
                                     <br />
                                     <p class="discription-text lh-1 mb-0">{pd.discription.slice(0, 70)}</p>
 
-                                    <small class="name-text">{pd.ratings} </small>
+                                    <small class="name-text">
+                                        <DynamicRatings value={pd.ratings} ></DynamicRatings>
+
+                                        {pd.ratings} </small>
                                     <br />
                                     <small class="name-text fw-bold">Tk {pd.price}</small>
                                     <br />
