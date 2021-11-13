@@ -13,17 +13,15 @@ const ManageOrders = () => {
     }, [isShipped])
 
     const handleDelete = id => {
-        console.log(id)
+
         const confirmation = window.confirm('Are you sure, you want to delete an order?');
         if (confirmation) {
             const url = `https://thawing-ridge-68503.herokuapp.com/orders/${id}`;
-            // console.log(url)
             fetch(url, {
                 method: 'DELETE'
             })
                 .then(res => res.json())
                 .then(data => {
-                    console.log('hello')
                     if (data.deletedCount > 0) {
                         const restOrders = orders.filter(order => order._id !== id);
                         setOrders(restOrders);
@@ -33,7 +31,6 @@ const ManageOrders = () => {
     }
 
     const handleStatus = id => {
-        console.log('clicked')
         const url = `https://thawing-ridge-68503.herokuapp.com/orders/${id}`;
         fetch(url, {
             method: 'PUT',
@@ -46,13 +43,13 @@ const ManageOrders = () => {
             .then(data => {
                 console.log(data)
                 if (data.modifiedCount > 0) {
-                    alert('Status changed to "Appropved" ');
+                    alert('Status changed to "Shipped" ');
                     setIsShipped(true)
 
                 }
             })
     }
-
+    // console.log(orders)
 
     return (
         <div className='table-banner container-fluid pro'>
@@ -75,7 +72,7 @@ const ManageOrders = () => {
                             key={order._id}
                         >
                             <th> {orders.indexOf(order) + 1}. </th>
-                            <td> {order.customerName} <br /> {order.number}<br /> {order.address} </td>
+                            <td> {order.customerName} <br />{order.address} <br /> {order.phone} </td>
                             <td> {order.product.name} <br />
                                 Price : Tk{order.product.price}</td>
                             <td> <button

@@ -46,7 +46,7 @@ const ExploreProducts = () => {
                                         <Link
                                             className="order-click link fw-bold text-white"
                                             to={`/purchase/${pd._id}`}>
-                                            Purchase <i class="fas fa-shopping-cart"></i> </Link> </button>
+                                            Purchase <i className="fas fa-shopping-cart"></i> </Link> </button>
 
                                 </div>
                             </div>

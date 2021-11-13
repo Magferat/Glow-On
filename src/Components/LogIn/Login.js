@@ -35,7 +35,7 @@ const Login = () => {
                 <div className="col-6 mx-2 px-3 mt-5">
                     <form onSubmit={emailPassLoginOnSubmit}>
                         <div className="mb-3">
-                            <label for="exampleInputEmail1" className="form-label">Email address</label>
+                            <label htmlFor="exampleInputEmail1" className="form-label">Email address</label>
                             <input
                                 onBlur={handleOnblur}
 
@@ -44,7 +44,7 @@ const Login = () => {
 
                         </div>
                         <div className="mb-3">
-                            <label for="exampleInputPassword1" className="form-label">Password</label>
+                            <label htmlFor="exampleInputPassword1" className="form-label">Password</label>
                             <input
                                 onBlur={handleOnblur}
                                 type="password" name="password"
@@ -52,14 +52,14 @@ const Login = () => {
                             <div id="emailHelp" className="form-text">Never share your Password with anyone else.</div>
                         </div>
 
-                        <button type="submit" className="btn btn-primary">Login <i class="fas fa-sign-in-alt"></i></button>
+                        <button type="submit" className="btn btn-primary">Login <i className="fas fa-sign-in-alt"></i></button>
                         <p>{error}</p>
                     </form>
                     <NavLink
                         className="link"
                         to="/register">Not an user ? <span className="text-primary"> Register</span> </NavLink><br /><button
                             onClick={handleGooglelogIn}
-                            className="btn btn-danger text-white mt-1">Continue With Google <i class="fab fa-google-plus-g"></i></button>
+                            className="btn btn-danger text-white mt-1">Continue With Google <i className="fab fa-google-plus-g"></i></button>
                 </div>
                 <div className="col-6">
                     <img

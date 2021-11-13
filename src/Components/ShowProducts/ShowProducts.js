@@ -30,7 +30,7 @@ const ShowProducts = (props) => {
                         <Link
                             className="order-click link fw-bold text-white"
                             to={`/purchase/${_id}`}>
-                            Purchase <i class="fas fa-shopping-cart"></i> </Link> </button>
+                            Purchase <i className="fas fa-shopping-cart"></i> </Link> </button>
 
                 </div>
             </div>

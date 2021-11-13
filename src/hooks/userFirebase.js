@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import initializeAuthentication from "../Firebase/firebase.init";
 import { GoogleAuthProvider, getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile, signOut, onAuthStateChanged, signInWithPopup } from "firebase/auth";
-import { isAdmin } from "@firebase/util";
+// import { isAdmin } from "@firebase/util";
 
 
 initializeAuthentication()
@@ -25,7 +25,7 @@ const useFirebase = () => {
 
     const userName = e => {
         setName(e.target.value);
-        // console.log(e.target.value);
+
     }
 
     const userEmail = e => {
@@ -48,7 +48,7 @@ const useFirebase = () => {
                 .then(result => {
                     // Signed in 
                     const user = result.user;
-                    console.log(user);
+                    // console.log(user);
                     setUser(user);
                     setUserName()
                     storeUserData(email, name, 'POST');
@@ -81,15 +81,17 @@ const useFirebase = () => {
             .then(result => {
 
 
-                if (!isAdmin) {
-                    const destination = location?.state?.from || '/home';
-                    history.replace(destination);
 
-                }
-                else if (isAdmin) {
-                    const destination = '/dashboard';
-                    history.push(destination);
-                }
+                const destination = location?.state?.from || '/dashboard';
+                history.replace(destination);
+
+
+                // if (isAdmin) {
+                //     const destination = '/dashboard';
+                //     history.replace(destination);
+                // }
+
+
                 setError('');
             })
             .catch((error) => {
@@ -112,7 +114,7 @@ const useFirebase = () => {
 
                 setError('');
 
-                const destination = location?.state?.from || '/home';
+                const destination = location?.state?.from || '/dashboard';
                 history.replace(destination);
 
             }).catch((error) => {

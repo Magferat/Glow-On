@@ -32,7 +32,6 @@ const Reviews = () => {
             .then(data => {
                 if (data.insertedId) {
                     alert('Your Review has been Placed');
-                    console.log(data)
                 }
             });
 
@@ -48,7 +47,7 @@ const Reviews = () => {
                         onSubmit={submitReview}
                     >
                         <div className="mb-3">
-                            <label for="exampleFormControlInput1" className="form-label text-white">
+                            <label htmlFor="exampleFormControlInput1" className="form-label text-white">
                                 User Name</label>
                             <input
                                 onBlur={handleOnBlur}
@@ -57,7 +56,7 @@ const Reviews = () => {
                                 type="text" className="form-control border-dark" id="exampleFormControlInput1" placeholder="User Name" />
                         </div>
                         <div className="mb-3">
-                            <label for="exampleFormControlInput1" className="form-label text-white">Email address</label>
+                            <label htmlFor="exampleFormControlInput1" className="form-label text-white">Email address</label>
                             <input
                                 onBlur={handleOnBlur}
                                 required
@@ -65,7 +64,7 @@ const Reviews = () => {
                                 type="email" className="form-control" id="exampleFormControlInput1" placeholder="name@example.com" />
                         </div>
                         <div className="mb-3">
-                            <label for="exampleFormControlInput1" className="form-label text-white">
+                            <label htmlFor="exampleFormControlInput1" className="form-label text-white">
                                 Rating</label>
                             <input
                                 onBlur={handleOnBlur}
@@ -75,7 +74,7 @@ const Reviews = () => {
                                 className="form-control" id="exampleFormControlInput1" placeholder="Rating(0-5)" />
                         </div>
                         <div className="mb-3">
-                            <label for="exampleFormControlTextarea1" className="form-label text-white">
+                            <label htmlFor="exampleFormControlTextarea1" className="form-label text-white">
                                 Review</label>
                             <textarea
                                 name="post"

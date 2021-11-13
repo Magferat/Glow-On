@@ -24,7 +24,6 @@ const ManageProducts = () => {
             })
                 .then(res => res.json())
                 .then(data => {
-                    console.log('hello')
                     if (data.deletedCount > 0) {
                         const restOrders = products.filter(order => order._id !== id);
                         setProducts(restOrders);

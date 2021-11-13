@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 
 
 const AddProducts = () => {
-    const { register, handleSubmit, } = useForm();
+    const { register, handleSubmit, reset } = useForm();
     const onSubmit = data => {
         // e.preventDefault();
 
@@ -14,10 +14,10 @@ const AddProducts = () => {
         })
             .then(res => res.json())
             .then(res => {
-                console.log(res);
+                // console.log(res);
                 if (res.insertedId) {
                     alert('Your Item has been added');
-                    // reset();
+                    reset();
                 }
             });
 
@@ -29,7 +29,6 @@ const AddProducts = () => {
             <h1 className="fw-light text-center text-white fs-1">Add Products</h1>
             <div className="row row container mx-auto row-cols-lg-1 row-cols-md-1 g-4">
                 <div className="col-lg-6  mx-lg-auto add-item">
-                    {/* <h1 className="fw-light text-center text-white fs-1">Add Products</h1> */}
 
                     <form
                         className="d-flex flex-column"

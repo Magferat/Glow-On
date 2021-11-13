@@ -32,7 +32,7 @@ const Register = () => {
                                 type="text" className="form-control" id="inputName" placeholder="Your Name" />
                         </div>
                         <div className="mb-3">
-                            <label for="exampleInputEmail1" className="form-label">Email address</label>
+                            <label htmlFor="exampleInputEmail1" className="form-label">Email address</label>
                             <input
                                 onBlur={userEmail}
 
@@ -41,7 +41,7 @@ const Register = () => {
 
                         </div>
                         <div className="mb-3">
-                            <label for="exampleInputPassword1" className="form-label">Password</label>
+                            <label htmlFor="exampleInputPassword1" className="form-label">Password</label>
                             <input
                                 onBlur={userPassword}
                                 type="password" name="password"
@@ -50,7 +50,7 @@ const Register = () => {
 
                                 Never share your Password with anyone else.</div>
                         </div>
-                        <button type="submit" className="btn btn-primary">Register <i class="fas fa-sign-in-alt"></i></button>
+                        <button type="submit" className="btn btn-primary">Register <i className="fas fa-sign-in-alt"></i></button>
                         <p> {error}</p>
 
                     </form>

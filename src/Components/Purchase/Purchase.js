@@ -51,7 +51,7 @@ const Purchase = () => {
             .then(res => res.json())
             .then(data => setProduct(data))
     }, [productId])
-    console.log(user)
+
     return (
         <>
             <Navber />
